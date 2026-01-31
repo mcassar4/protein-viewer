@@ -90,6 +90,40 @@ function setEmptyList(listElement, message) {
   listElement.textContent = message;
 }
 
+async function copyToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    await navigator.clipboard.writeText(text);
+    return true;
+  }
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "absolute";
+  textarea.style.left = "-9999px";
+  document.body.appendChild(textarea);
+  textarea.select();
+  const success = document.execCommand("copy");
+  textarea.remove();
+  return success;
+}
+
+function initDonateCopy() {
+  const buttons = document.querySelectorAll(".copy-btn");
+  buttons.forEach((button) => {
+    button.addEventListener("click", async () => {
+      const value = button.dataset.copy;
+      if (!value) {
+        return;
+      }
+      try {
+        const ok = await copyToClipboard(value);
+      } catch {
+        // Ignore copy errors.
+      }
+    });
+  });
+}
+
 function createProteinItem(protein, group) {
   const label = document.createElement("label");
   label.className = "protein-item";
@@ -495,5 +529,6 @@ elements.downloadBtn.addEventListener("click", () => {
   downloadComparisons();
 });
 
+initDonateCopy();
 updateSelectionSummary();
 resetHistory();

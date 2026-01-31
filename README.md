@@ -12,6 +12,13 @@ https://mcassar4.github.io/protein-viewer/
 
 All processing happens locally in your browser. Files you upload stay on your computer and are never sent to a server, stored, or retained by this site.
 
+## Support
+
+If this tool saves you time, consider donating:
+
+- SOL: AgPxUmMhn1ZXVfZKh4vvkDiEXnHR5mZ3qYi6VT3i7TPY
+- ETH: 0xc8e923363D879FDE84d9cE08138031AFfc55323f
+
 ## Run locally
 
 Open `index.html` directly in your browser, or serve with a local static server:
