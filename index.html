@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Protein Alignment Viewer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app-header">
+        <div class="title-block">
+          <p class="eyebrow">FASTA alignment viewer</p>
+          <h1>Protein Compare</h1>
+          <p class="subtitle">
+            Upload a FASTA file, pick primary and test proteins, then compare them
+            side-by-side.
+          </p>
+        </div>
+        <div class="legend">
+          <div class="legend-item">
+            <span class="swatch match"></span>
+            <span>Match</span>
+          </div>
+          <div class="legend-item">
+            <span class="swatch mismatch"></span>
+            <span>Mismatch</span>
+          </div>
+          <div class="legend-item">
+            <span class="swatch gap"></span>
+            <span>Gap</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Upload</h2>
+          <p class="hint" id="file-meta">No file loaded.</p>
+        </div>
+        <p class="upload-blurb">
+          Upload a plain-text FASTA file. Each protein must start with a header
+          line beginning with <strong>&gt;</strong>, followed by one or more
+          lines of sequence letters (A–Z). Example:
+          <code>&gt;ProteinName</code> then the sequence on the next line(s).
+        </p>
+        <div class="upload-row">
+          <label class="file-pill" for="fasta-file">Choose FASTA file</label>
+          <input
+            id="fasta-file"
+            type="file"
+            accept=".fa,.fasta,.faa,.txt"
+          />
+        </div>
+      </section>
+
+      <section class="panel selection-panel">
+        <div class="panel-header">
+          <h2>Select proteins</h2>
+          <p class="hint" id="selection-summary">0 primaries - 0 tests</p>
+        </div>
+        <div class="selection-layout">
+          <aside class="history-panel">
+            <div class="history-header">
+              <h3>History</h3>
+              <p class="hint">Latest comparisons</p>
+            </div>
+            <div id="history-list" class="history-list empty">
+              No comparisons yet.
+            </div>
+          </aside>
+          <div class="selection-content">
+            <div class="selector-grid">
+              <div class="selector">
+                <h3>Primary proteins</h3>
+                <div id="primary-list" class="protein-list empty">
+                  Load a FASTA file to list proteins.
+                </div>
+              </div>
+              <div class="selector">
+                <h3>Test proteins</h3>
+                <div id="test-list" class="protein-list empty">
+                  Load a FASTA file to list proteins.
+                </div>
+              </div>
+            </div>
+            <div class="actions">
+              <button id="compare-btn" class="primary-btn">
+                Compare selected
+              </button>
+              <button id="download-btn" class="secondary-btn">
+                Download comparisons
+              </button>
+              <p class="hint" id="compare-hint">
+                Select at least 1 primary and 1 test.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel results-panel">
+        <div class="panel-header">
+          <h2>Comparisons</h2>
+          <p class="hint" id="results-meta">No comparisons yet.</p>
+        </div>
+        <div id="comparisons" class="comparisons empty-state">
+          Upload and select proteins, then compare.
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
